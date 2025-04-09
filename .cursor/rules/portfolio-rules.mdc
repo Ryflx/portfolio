@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- Suggest each code edit one by one
+- We must complete each snippet before moving to the next

@@ -16,12 +16,5 @@ class HomeView(TemplateView):
         context['experience'] = Experience.objects.all()
         return context
 
-class ContactView(CreateView):
-    model = Contact
-    form_class = ContactForm
+class ContactView(TemplateView):
     template_name = 'core/contact.html'
-    success_url = '/'
-
-    def form_valid(self, form):
-        messages.success(self.request, 'Thank you for your message! I will get back to you soon.')
-        return super().form_valid(form)

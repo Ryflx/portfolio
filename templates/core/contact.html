@@ -1,22 +1,21 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 
 {% block title %}Contact Me{% endblock %}
 
 {% block content %}
-<section class="py-5">
+<section class="py-5 bg-light">
     <div class="container py-4">
         <div class="text-center mb-5">
             <h6 class="text-primary fw-bold mb-2">CONTACT ME</h6>
             <h1 class="fw-bold">Get In Touch</h1>
-            <p class="lead w-75 mx-auto">Have a project in mind or want to discuss a potential collaboration? I'd love to hear from you!</p>
+            <p class="lead w-75 mx-auto">I'm always open to new opportunities and collaborations.</p>
         </div>
         
-        <div class="row g-5 justify-content-center">
-            <div class="col-md-5">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-4">
-                        <h4 class="mb-4">Contact Information</h4>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-5">
+                        <h4 class="mb-4 text-center">Contact Information</h4>
                         
                         <div class="d-flex align-items-center mb-4">
                             <div class="bg-primary p-3 rounded text-white me-3">
@@ -48,24 +47,23 @@
                             </div>
                         </div>
                         
-                    
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-7">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-body p-4">
-                        <h4 class="mb-4">Send Me a Message</h4>
-                        <form method="post" class="contact-form">
-                            {% csrf_token %}
-                            {{ form|crispy }}
-                            <div class="mt-4">
-                                <button type="submit" class="btn btn-primary btn-lg">
-                                    <i class="fas fa-paper-plane me-2"></i>Send Message
-                                </button>
+                        <div class="mt-5">
+                            <h5 class="mb-3 text-center">Connect With Me</h5>
+                            <div class="d-flex justify-content-center social-links">
+                                <a href="https://github.com/yourusername" target="_blank" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/yourusername" target="_blank" title="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://twitter.com/yourusername" target="_blank" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="mailto:liam.coates@gmail.com" title="Email Me">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

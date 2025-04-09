@@ -9,8 +9,8 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h1 class="display-3 mb-4 fade-in fw-bold">Hello, I'm <span class="text-primary">Your Name</span></h1>
-                <p class="lead mb-4 fade-in">Full Stack Developer | Problem Solver | Tech Enthusiast</p>
+                <h1 class="display-3 mb-4 fade-in fw-bold">Hello, I'm <span class="text-primary">Liam</span></h1>
+                <p class="lead mb-4 fade-in">Developer Evangelist | Problem Solver | AI Enthusiast</p>
                 <div class="fade-in">
                     <a href="#about" class="btn btn-primary btn-lg me-2">About Me</a>
                     <a href="{% url 'projects:project_list' %}" class="btn btn-outline-primary btn-lg">View My Work</a>
@@ -27,27 +27,25 @@
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <div class="position-relative">
                     <img src="{% static 'img/profile.jpg' %}" alt="Profile" class="img-fluid rounded shadow" onerror="this.src='https://via.placeholder.com/600x600?text=Your+Photo'">
-                    <div class="position-absolute bottom-0 end-0 bg-primary text-white p-3 rounded-start shadow">
-                        <div class="h5 mb-0">5+ Years Experience</div>
+                    <div class="position-absolute bottom-0 start-0 bg-primary text-white px-4 py-3 rounded-end shadow">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-star me-2"></i>
+                            <span class="h5 mb-0 fw-bold">10+ Years Experience</span>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 d-flex flex-column justify-content-center">
                 <h6 class="text-primary fw-bold mb-3">ABOUT ME</h6>
-                <h2 class="fw-bold mb-4">A passionate developer who loves creating amazing digital experiences</h2>
+                <h2 class="fw-bold mb-4">A passionate Solution Architect specializing in modern applications</h2>
                 <p class="lead mb-4">
-                    I'm a full-stack developer with expertise in building modern web applications.
+                    I'm a Solutions Architect with expertise in building scalable web applications and systems.
                     My journey in technology has equipped me with a diverse skill set and a problem-solving mindset.
                 </p>
                 <p class="mb-4">
                     With a focus on creating clean, efficient, and user-friendly solutions, I approach each project 
                     with enthusiasm and dedication. My goal is to deliver high-quality work that exceeds expectations.
                 </p>
-                <div>
-                    <a href="{% static 'files/resume.pdf' %}" class="btn btn-primary" target="_blank">
-                        <i class="fas fa-download me-2"></i>Download CV
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -60,16 +58,24 @@
             <h6 class="text-primary fw-bold mb-2">MY SKILLS</h6>
             <h2 class="fw-bold">Technical Expertise</h2>
         </div>
-        <div class="row g-4">
+        <div class="row g-4 justify-content-center">
             {% for skill in skills %}
-            <div class="col-md-4 col-lg-3">
+            <div class="col-md-4 col-lg-4">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body text-center p-4">
                         <div class="mb-3">
                             <i class="{{ skill.icon }} fa-3x text-primary"></i>
                         </div>
                         <h4 class="card-title mb-3">{{ skill.name }}</h4>
-                        <p class="card-text">{{ skill.description }}</p>
+                        <div class="card-text text-start">
+                            <ul>
+                                {% for line in skill.description.splitlines %}
+                                    {% if line %}
+                                        <li>{{ line }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -133,9 +139,9 @@
             <h6 class="text-primary fw-bold mb-2">MY EDUCATION</h6>
             <h2 class="fw-bold">Academic Background</h2>
         </div>
-        <div class="row g-4">
+        <div class="row g-4 justify-content-center">
             {% for edu in education %}
-            <div class="col-md-6 mb-4">
+            <div class="col-md-8 col-lg-6 mb-4">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body p-4">
                         <div class="d-flex align-items-center mb-3">
