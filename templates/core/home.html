@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome to My Portfolio{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero py-5 text-center bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-3 mb-4 fade-in fw-bold">Hello, I'm <span class="text-primary">Your Name</span></h1>
+                <p class="lead mb-4 fade-in">Full Stack Developer | Problem Solver | Tech Enthusiast</p>
+                <div class="fade-in">
+                    <a href="#about" class="btn btn-primary btn-lg me-2">About Me</a>
+                    <a href="{% url 'projects:project_list' %}" class="btn btn-outline-primary btn-lg">View My Work</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="position-relative">
+                    <img src="{% static 'img/profile.jpg' %}" alt="Profile" class="img-fluid rounded shadow" onerror="this.src='https://via.placeholder.com/600x600?text=Your+Photo'">
+                    <div class="position-absolute bottom-0 end-0 bg-primary text-white p-3 rounded-start shadow">
+                        <div class="h5 mb-0">5+ Years Experience</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 d-flex flex-column justify-content-center">
+                <h6 class="text-primary fw-bold mb-3">ABOUT ME</h6>
+                <h2 class="fw-bold mb-4">A passionate developer who loves creating amazing digital experiences</h2>
+                <p class="lead mb-4">
+                    I'm a full-stack developer with expertise in building modern web applications.
+                    My journey in technology has equipped me with a diverse skill set and a problem-solving mindset.
+                </p>
+                <p class="mb-4">
+                    With a focus on creating clean, efficient, and user-friendly solutions, I approach each project 
+                    with enthusiasm and dedication. My goal is to deliver high-quality work that exceeds expectations.
+                </p>
+                <div>
+                    <a href="{% static 'files/resume.pdf' %}" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-download me-2"></i>Download CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="skills-section py-5 bg-light">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h6 class="text-primary fw-bold mb-2">MY SKILLS</h6>
+            <h2 class="fw-bold">Technical Expertise</h2>
+        </div>
+        <div class="row g-4">
+            {% for skill in skills %}
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3">
+                            <i class="{{ skill.icon }} fa-3x text-primary"></i>
+                        </div>
+                        <h4 class="card-title mb-3">{{ skill.name }}</h4>
+                        <p class="card-text">{{ skill.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No skills added yet. Please add skills through the admin panel.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section class="py-5">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h6 class="text-primary fw-bold mb-2">MY JOURNEY</h6>
+            <h2 class="fw-bold">Professional Experience</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="timeline">
+                    {% for exp in experience %}
+                    <div class="card mb-4 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <div>
+                                    <h4 class="card-title mb-1">{{ exp.position }}</h4>
+                                    <h6 class="card-subtitle text-muted">
+                                        <i class="fas fa-building me-2"></i>{{ exp.company }}
+                                    </h6>
+                                </div>
+                                <span class="badge bg-primary py-2 px-3 rounded-pill">
+                                    <i class="fas fa-calendar-alt me-2"></i>
+                                    {{ exp.start_date|date:"M Y" }} - 
+                                    {% if exp.end_date %}
+                                        {{ exp.end_date|date:"M Y" }}
+                                    {% else %}
+                                        Present
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <p class="card-text">{{ exp.description }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="text-center">
+                        <p>No experience added yet. Please add experience through the admin panel.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section class="py-5 bg-light">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h6 class="text-primary fw-bold mb-2">MY EDUCATION</h6>
+            <h2 class="fw-bold">Academic Background</h2>
+        </div>
+        <div class="row g-4">
+            {% for edu in education %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary p-3 rounded text-white me-3">
+                                <i class="fas fa-graduation-cap fa-2x"></i>
+                            </div>
+                            <div>
+                                <h4 class="card-title mb-1">{{ edu.degree }}</h4>
+                                <h6 class="card-subtitle text-muted">{{ edu.university }}</h6>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark">
+                                <i class="fas fa-calendar-alt me-2"></i>
+                                {{ edu.start_date|date:"M Y" }} - 
+                                {% if edu.end_date %}
+                                    {{ edu.end_date|date:"M Y" }}
+                                {% else %}
+                                    Present
+                                {% endif %}
+                            </span>
+                        </div>
+                        <p class="card-text">{{ edu.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No education added yet. Please add education through the admin panel.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 text-center">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow p-5 bg-primary text-white">
+                    <h2 class="mb-4 fw-bold">Let's Work Together</h2>
+                    <p class="lead mb-4">I'm always interested in hearing about new projects and opportunities.</p>
+                    <div>
+                        <a href="{% url 'contact' %}" class="btn btn-light btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i>Get in Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
